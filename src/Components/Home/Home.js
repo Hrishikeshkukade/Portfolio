@@ -3,7 +3,7 @@ import { Container, Typography, Button, Box } from '@mui/material';
 import DownloadIcon from '@mui/icons-material/Download';
 import Typical from 'react-typical';
 import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react'; // Import keyframes from @emotion/react
+import { keyframes } from '@emotion/react';
 
 const Home = () => {
   const [showFrontend, setShowFrontend] = useState(false);
@@ -13,15 +13,15 @@ const Home = () => {
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowFrontend(true);
-    }, 2000); // Delay before showing the second line
+    }, 2000);
 
     const timer2 = setTimeout(() => {
       setShowInfo(true);
-    }, 4000); // Delay before showing the third line
+    }, 4000);
 
     const timer3 = setTimeout(() => {
       setShowButtons(true);
-    }, 11000); // Delay before showing the buttons
+    }, 11000);
 
     return () => {
       clearTimeout(timer1);
@@ -57,19 +57,32 @@ const Home = () => {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        paddingLeft: '10%', 
+        paddingLeft: '10%',
       }}
     >
-      <Container maxWidth="sm"> {/* Restrict the container width */}
-        <Typography variant="h2" gutterBottom style={{ fontWeight: 'bold' }}>
+      <Container maxWidth="sm">
+        <Typography
+          variant="h2"
+          gutterBottom
+          sx={{
+            fontWeight: 'bold',
+            fontSize: { xs: '1.5rem', sm: '2.5rem', md: '3.5rem', lg: '4rem' }, // Responsive font sizes
+          }}
+        >
           <Typical
             steps={['Hi, I\'m Hrishikesh Kukade!', 1000]}
             wrapper="span"
-            style={{ whiteSpace: 'pre', display: 'inline-block',  }}
+            style={{ whiteSpace: 'pre', display: 'inline-block' }}
           />
         </Typography>
         {showFrontend && (
-          <Typography variant="h4" gutterBottom>
+          <Typography
+            variant="h4"
+            gutterBottom
+            sx={{
+              fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem', lg: '2.5rem' }, // Responsive font sizes
+            }}
+          >
             <Typical
               steps={['Frontend Developer', 1000]}
               wrapper="span"
@@ -78,7 +91,13 @@ const Home = () => {
           </Typography>
         )}
         {showInfo && (
-          <Typography variant="h6" paragraph>
+          <Typography
+            variant="h6"
+            paragraph
+            sx={{
+              fontSize: { xs: '0.75rem', sm: '1rem', md: '1.25rem', lg: '1.5rem' }, // Responsive font sizes
+            }}
+          >
             <Typical
               steps={['I specialize in creating interactive, user-friendly web applications using modern frontend technologies.', 1000]}
               wrapper="span"
@@ -94,11 +113,11 @@ const Home = () => {
                 backgroundColor: 'white',
                 color: 'black',
                 marginRight: '10px',
-                borderRadius: 0, 
-                padding: '12px 24px', 
-                fontSize: '1.1rem', 
+                borderRadius: 0,
+                padding: { xs: '8px 16px', sm: '10px 20px', md: '12px 24px' }, // Responsive padding
+                fontSize: { xs: '0.875rem', sm: '1rem', md: '1.1rem' }, // Responsive font sizes
                 '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)', 
+                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
                 },
               }}
             >
@@ -107,17 +126,17 @@ const Home = () => {
             <AnimatedButton
               variant="contained"
               sx={{
-                backgroundColor: 'transparent', 
-                color: 'white', 
-                padding: '10px 20px', 
-                fontSize: '1rem', 
+                backgroundColor: 'transparent',
+                color: 'white',
+                padding: { xs: '6px 12px', sm: '8px 16px', md: '10px 20px' }, // Responsive padding
+                fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }, // Responsive font sizes
                 display: 'flex',
                 alignItems: 'center',
                 '&:hover': {
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 },
               }}
-              startIcon={<DownloadIcon style={{ fontSize: '2rem' }} />} 
+              startIcon={<DownloadIcon sx={{ fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' } }} />} // Responsive icon size
             >
               Download Resume
             </AnimatedButton>
@@ -129,6 +148,7 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
 
