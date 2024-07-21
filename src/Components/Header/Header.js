@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
@@ -12,10 +12,25 @@ import ListItemText from "@mui/material/ListItemText";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
+
+  // Update scrolled state based on window scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const drawer = (
     <Box
@@ -60,8 +75,13 @@ const Header = () => {
   return (
     <>
       <AppBar
-        position="static"
-        sx={{ bgcolor: "rgba(0, 0, 0, 0.9)", height: "70px" }}
+        position="sticky"
+        sx={{
+          bgcolor: "#000",
+          height: "70px",
+          boxShadow: scrolled ? "0px 4px 6px rgba(255, 255, 255, 0.2)" : "none",
+          transition: "box-shadow 0.6s ease-in-out, background-color 0.6s ease-in-out"
+        }}
       >
         <Toolbar>
           <Typography
@@ -77,7 +97,7 @@ const Header = () => {
                 marginRight: "16px",
               }}
             >
-              
+              {/* Your logo or text */}
             </a>
           </Typography>
           <Box
@@ -126,7 +146,6 @@ const Header = () => {
       <Drawer
         anchor="right"
         open={drawerOpen}
-      
         onClose={handleDrawerToggle}
         sx={{ transition: "transform 1s ease" }}
       >
@@ -137,5 +156,9 @@ const Header = () => {
 };
 
 export default Header;
+
+
+
+
 
 
