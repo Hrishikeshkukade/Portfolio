@@ -41,16 +41,27 @@ const Home = () => {
     }
   `;
 
+  const backgroundAnimation = keyframes`
+    0% {
+      background-color: #000000; /* Black */
+    }
+    50% {
+      background-color: #000002; /* Very subtle violet */
+    }
+    100% {
+      background-color: #000000; /* Black */
+    }
+  `;
+
   const AnimatedButton = styled(Button)`
     animation: ${riseUp} 2s ease-out forwards;
   `;
 
   return (
     <Box
-      style={{
+      sx={{
         backgroundColor: "#000",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
+        animation: `${backgroundAnimation} 15s ease infinite`,
         height: '100vh',
         color: 'white',
         display: 'flex',
@@ -66,7 +77,7 @@ const Home = () => {
           gutterBottom
           sx={{
             fontWeight: 'bold',
-            fontSize: { xs: '1.5rem', sm: '2.5rem', md: '3.5rem', lg: '4rem' }, // Responsive font sizes
+            fontSize: { xs: '1.5rem', sm: '2.5rem', md: '3.5rem', lg: '4rem' },
           }}
         >
           <Typical
@@ -80,7 +91,7 @@ const Home = () => {
             variant="h4"
             gutterBottom
             sx={{
-              fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem', lg: '2.5rem' }, // Responsive font sizes
+              fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem', lg: '2.5rem' },
             }}
           >
             <Typical
@@ -95,7 +106,7 @@ const Home = () => {
             variant="h6"
             paragraph
             sx={{
-              fontSize: { xs: '0.75rem', sm: '1rem', md: '1.25rem', lg: '1.5rem' }, // Responsive font sizes
+              fontSize: { xs: '0.75rem', sm: '1rem', md: '1.25rem', lg: '1.5rem' },
             }}
           >
             <Typical
@@ -114,8 +125,8 @@ const Home = () => {
                 color: 'black',
                 marginRight: '10px',
                 borderRadius: 0,
-                padding: { xs: '8px 16px', sm: '10px 20px', md: '12px 24px' }, // Responsive padding
-                fontSize: { xs: '0.875rem', sm: '1rem', md: '1.1rem' }, // Responsive font sizes
+                padding: { xs: '8px 16px', sm: '10px 20px', md: '12px 24px' },
+                fontSize: { xs: '0.875rem', sm: '1rem', md: '1.1rem' },
                 '&:hover': {
                   backgroundColor: 'rgba(255, 255, 255, 0.9)',
                 },
@@ -128,15 +139,15 @@ const Home = () => {
               sx={{
                 backgroundColor: 'transparent',
                 color: 'white',
-                padding: { xs: '6px 12px', sm: '8px 16px', md: '10px 20px' }, // Responsive padding
-                fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }, // Responsive font sizes
+                padding: { xs: '6px 12px', sm: '8px 16px', md: '10px 20px' },
+                fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
                 display: 'flex',
                 alignItems: 'center',
                 '&:hover': {
                   backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 },
               }}
-              startIcon={<DownloadIcon sx={{ fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' } }} />} // Responsive icon size
+              startIcon={<DownloadIcon sx={{ fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' } }} />}
             >
               Download Resume
             </AnimatedButton>
@@ -148,6 +159,9 @@ const Home = () => {
 };
 
 export default Home;
+
+
+
 
 
 
