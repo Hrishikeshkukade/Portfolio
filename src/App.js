@@ -1,12 +1,8 @@
-import { auth } from "./firebase";
-import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Header from "./Components/Header/Header";
 import Home from "./Components/Home/Home";
 import Services from "./Components/Services/Services";
-// import useAuth from "./api/useAuth";
-// import Profile from "./Components/Profile/Profile";
-
+import About from "./Components/About/About";
 
 
 function App() {
@@ -14,6 +10,7 @@ function App() {
     <div className="App">
       <Header />
       <Home />
+      <About />
       <Services />
     </div>
   );

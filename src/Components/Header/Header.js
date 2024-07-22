@@ -9,6 +9,7 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
+import { Link } from "react-scroll"; // Import Link from react-scroll
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -50,8 +51,6 @@ const Header = () => {
           <ListItem
             button
             key={text}
-            component="a"
-            href={`/${text.toLowerCase()}`}
             sx={{
               color: "white",
               textDecoration: "none",
@@ -65,7 +64,14 @@ const Header = () => {
               },
             }}
           >
-            <ListItemText primary={text} />
+            <Link
+              to={text.toLowerCase()}
+              smooth={true}
+              duration={500}
+              style={{ width: "100%", display: "block", cursor: "pointer" }} // Add cursor: pointer
+            >
+              <ListItemText primary={text} />
+            </Link>
           </ListItem>
         ))}
       </List>
@@ -80,7 +86,7 @@ const Header = () => {
           bgcolor: "#000",
           height: "70px",
           boxShadow: scrolled ? "0px 4px 6px rgba(255, 255, 255, 0.2)" : "none",
-          transition: "box-shadow 0.6s ease-in-out, background-color 0.6s ease-in-out"
+          transition: "box-shadow 0.6s ease-in-out, background-color 0.6s ease-in-out",
         }}
       >
         <Toolbar>
@@ -89,16 +95,19 @@ const Header = () => {
             component="div"
             sx={{ flexGrow: 1, fontWeight: "bold", color: "#fff" }}
           >
-            <a
-              href="/"
+            <Link
+              to="home"
+              smooth={true}
+              duration={500}
               style={{
                 color: "#fff",
                 textDecoration: "none",
                 marginRight: "16px",
+                cursor: "pointer", // Add cursor: pointer
               }}
             >
               {/* Your logo or text */}
-            </a>
+            </Link>
           </Typography>
           <Box
             sx={{
@@ -108,9 +117,11 @@ const Header = () => {
             }}
           >
             {["Home", "About", "Skills", "Project", "Contact"].map((text) => (
-              <a
+              <Link
                 key={text}
-                href={`/${text.toLowerCase()}`}
+                to={text.toLowerCase()}
+                smooth={true}
+                duration={500}
                 style={{
                   color: "#fff",
                   textDecoration: "none",
@@ -118,6 +129,7 @@ const Header = () => {
                   padding: "8px",
                   borderRadius: "4px",
                   transition: "all 0.5s ease",
+                  cursor: "pointer", // Add cursor: pointer
                 }}
                 onMouseOver={(e) => {
                   e.currentTarget.style.color = "#000";
@@ -129,7 +141,7 @@ const Header = () => {
                 }}
               >
                 {text}
-              </a>
+              </Link>
             ))}
           </Box>
           <Box sx={{ display: { xs: "flex", md: "none" } }}>
@@ -156,6 +168,8 @@ const Header = () => {
 };
 
 export default Header;
+
+
 
 
 
