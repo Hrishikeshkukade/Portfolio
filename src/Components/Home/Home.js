@@ -1,34 +1,75 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Typography, Button, Box } from '@mui/material';
-import DownloadIcon from '@mui/icons-material/Download';
-import Typical from 'react-typical';
-import styled from '@emotion/styled';
-import { keyframes } from '@emotion/react';
+import React, { useRef, useState, useEffect } from "react";
+import { Container, Typography, Button, Box } from "@mui/material";
+import DownloadIcon from "@mui/icons-material/Download";
+import styled from "@emotion/styled";
+import { keyframes } from "@emotion/react";
+import Typed from "typed.js";
 
 const Home = () => {
   const [showFrontend, setShowFrontend] = useState(false);
   const [showInfo, setShowInfo] = useState(false);
   const [showButtons, setShowButtons] = useState(false);
+  const typedRef1 = useRef(null);
+  const typedRef2 = useRef(null);
+  const typedRef3 = useRef(null);
 
   useEffect(() => {
-    const timer1 = setTimeout(() => {
-      setShowFrontend(true);
-    }, 2000);
+    const options1 = {
+      strings: ["Hi, I'm Hrishikesh Kukade!"],
+      typeSpeed: 50,
+      showCursor: true,
+      onComplete: () => {
+        typedRef1.current.nextElementSibling.style.display = 'none'; // Hide cursor after typing
+        setShowFrontend(true);
+      }
+    };
 
-    const timer2 = setTimeout(() => {
-      setShowInfo(true);
-    }, 4000);
-
-    const timer3 = setTimeout(() => {
-      setShowButtons(true);
-    }, 11000);
+    const typed1 = new Typed(typedRef1.current, options1);
 
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      clearTimeout(timer3);
+      typed1.destroy();
     };
   }, []);
+
+  useEffect(() => {
+    if (showFrontend) {
+      const options2 = {
+        strings: ["Frontend Developer"],
+        typeSpeed: 50,
+        showCursor: true,
+        onComplete: () => {
+          typedRef2.current.nextElementSibling.style.display = 'none'; // Hide cursor after typing
+          setShowInfo(true);
+        }
+      };
+
+      const typed2 = new Typed(typedRef2.current, options2);
+
+      return () => {
+        typed2.destroy();
+      };
+    }
+  }, [showFrontend]);
+
+  useEffect(() => {
+    if (showInfo) {
+      const options3 = {
+        strings: ["I specialize in creating interactive, user-friendly web applications using modern frontend technologies."],
+        typeSpeed: 50,
+        showCursor: true,
+        onComplete: () => {
+          typedRef3.current.nextElementSibling.style.display = 'none'; // Hide cursor after typing
+          setTimeout(() => setShowButtons(true), 1000); // Show buttons after a delay
+        }
+      };
+
+      const typed3 = new Typed(typedRef3.current, options3);
+
+      return () => {
+        typed3.destroy();
+      };
+    }
+  }, [showInfo]);
 
   const riseUp = keyframes`
     from {
@@ -58,19 +99,18 @@ const Home = () => {
   `;
 
   return (
-    
     <Box
       id="home"
       sx={{
         backgroundColor: "#000",
         animation: `${backgroundAnimation} 15s ease infinite`,
-        height: '110vh',
-        color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        paddingLeft: '10%',
+        height: "115vh",
+        color: "white",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "flex-start",
+        paddingLeft: "10%",
       }}
     >
       <Container maxWidth="sm">
@@ -78,29 +118,21 @@ const Home = () => {
           variant="h2"
           gutterBottom
           sx={{
-            fontWeight: 'bold',
-            fontSize: { xs: '1.5rem', sm: '2.5rem', md: '3.5rem', lg: '4rem' },
+            fontWeight: "bold",
+            fontSize: { xs: "1.5rem", sm: "2.5rem", md: "3.5rem", lg: "4rem" },
           }}
         >
-          <Typical
-            steps={['Hi, I\'m Hrishikesh Kukade!', 1000]}
-            wrapper="span"
-            style={{ whiteSpace: 'pre', display: 'inline-block' }}
-          />
+          <span ref={typedRef1}></span>
         </Typography>
         {showFrontend && (
           <Typography
             variant="h4"
             gutterBottom
             sx={{
-              fontSize: { xs: '1rem', sm: '1.5rem', md: '2rem', lg: '2.5rem' },
+              fontSize: { xs: "1rem", sm: "1.5rem", md: "2rem", lg: "2.5rem" },
             }}
           >
-            <Typical
-              steps={['Frontend Developer', 1000]}
-              wrapper="span"
-              style={{ whiteSpace: 'pre', display: 'inline-block' }}
-            />
+            <span ref={typedRef2}></span>
           </Typography>
         )}
         {showInfo && (
@@ -108,14 +140,15 @@ const Home = () => {
             variant="h6"
             paragraph
             sx={{
-              fontSize: { xs: '0.75rem', sm: '1rem', md: '1.25rem', lg: '1.5rem' },
+              fontSize: {
+                xs: "0.75rem",
+                sm: "1rem",
+                md: "1.25rem",
+                lg: "1.5rem",
+              },
             }}
           >
-            <Typical
-              steps={['I specialize in creating interactive, user-friendly web applications using modern frontend technologies.', 1000]}
-              wrapper="span"
-              style={{ whiteSpace: 'pre', display: 'inline-block' }}
-            />
+            <span ref={typedRef3}></span>
           </Typography>
         )}
         {showButtons && (
@@ -123,14 +156,14 @@ const Home = () => {
             <AnimatedButton
               variant="contained"
               sx={{
-                backgroundColor: 'white',
-                color: 'black',
-                marginRight: '10px',
+                backgroundColor: "white",
+                color: "black",
+                marginRight: "10px",
                 borderRadius: 0,
-                padding: { xs: '8px 16px', sm: '10px 20px', md: '12px 24px' },
-                fontSize: { xs: '0.875rem', sm: '1rem', md: '1.1rem' },
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                padding: { xs: "8px 16px", sm: "10px 20px", md: "12px 24px" },
+                fontSize: { xs: "0.875rem", sm: "1rem", md: "1.1rem" },
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.9)",
                 },
               }}
             >
@@ -139,17 +172,21 @@ const Home = () => {
             <AnimatedButton
               variant="contained"
               sx={{
-                backgroundColor: 'transparent',
-                color: 'white',
-                padding: { xs: '6px 12px', sm: '8px 16px', md: '10px 20px' },
-                fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
-                display: 'flex',
-                alignItems: 'center',
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                backgroundColor: "transparent",
+                color: "white",
+                padding: { xs: "6px 12px", sm: "8px 16px", md: "10px 20px" },
+                fontSize: { xs: "0.75rem", sm: "0.875rem", md: "1rem" },
+                display: "flex",
+                alignItems: "center",
+                "&:hover": {
+                  backgroundColor: "rgba(255, 255, 255, 0.1)",
                 },
               }}
-              startIcon={<DownloadIcon sx={{ fontSize: { xs: '1.5rem', sm: '1.75rem', md: '2rem' } }} />}
+              startIcon={
+                <DownloadIcon
+                  sx={{ fontSize: { xs: "1.5rem", sm: "1.75rem", md: "2rem" } }}
+                />
+              }
             >
               Download Resume
             </AnimatedButton>
@@ -161,20 +198,5 @@ const Home = () => {
 };
 
 export default Home;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
