@@ -88,7 +88,7 @@ const About = () => {
           sx={{
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? "translateY(0)" : "translateY(50px)",
-            transition: "opacity 1s ease-in-out, transform 1s ease-in-out",
+            transition: "opacity 2s ease-in-out, transform 2s ease-in-out",
           }}
         >
           <Typography

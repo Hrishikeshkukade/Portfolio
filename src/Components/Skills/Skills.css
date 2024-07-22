@@ -1,0 +1,19 @@
+.icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #fff; /* Default color */
+    transition: color 0.3s;
+  }
+  
+  .icon-html:hover { color: #E34F26; } /* HTML Color */
+  .icon-css:hover { color: #1572B6; } /* CSS Color */
+  .icon-js-square:hover { color: #F7DF1E; } /* JavaScript Color */
+  .icon-react:hover { color: #61DAFB; } /* React Color */
+  .icon-redux:hover { color: #764ABC; } /* Redux Color */
+  .icon-material-ui:hover { color: #007FFF; } /* Material-UI Color */
+  .icon-bootstrap:hover { color: #563D7C; } /* Bootstrap Color */
+  .icon-git:hover { color: #F05032; } /* Git Color */
+  .icon-github:hover { color: #181717; } /* GitHub Color */
+  .icon-api-integration:hover { color: #00BFFF; } /* API Integration Color */
+  .icon-responsive-design:hover { color: #4CAF50; } /* Responsive Design Color */
+  
