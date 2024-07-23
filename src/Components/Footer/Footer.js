@@ -8,7 +8,7 @@ import {
   IconButton,
 } from "@mui/material";
 import { styled } from "@mui/system";
-import { Facebook, Twitter, LinkedIn, GitHub } from "@mui/icons-material";
+import { LinkedIn, GitHub } from "@mui/icons-material";
 
 const FooterContainer = styled(Box)(({ theme }) => ({
   backgroundColor: "#111",
@@ -36,7 +36,7 @@ const SocialIcons = styled(Box)(({ theme }) => ({
 
 const Footer = () => {
   return (
-    <FooterContainer component="footer">
+    <FooterContainer id="contact" component="footer" >
       <Container maxWidth="lg">
         <FooterGridContainer container spacing={4}>
           <Grid item xs={12} sm={4}>
@@ -55,7 +55,7 @@ const Footer = () => {
             <Typography variant="body2">
               Email:{" "}
               <Link
-                href="mailto:hrishikesh@example.com"
+                href="mailto:hrishikeshkukade6@gmail.com"
                 color="inherit"
                 underline="hover"
               >
@@ -64,7 +64,7 @@ const Footer = () => {
             </Typography>
             <Typography variant="body2">
               Phone:{" "}
-              <Link href="tel:+1234567890" color="inherit" underline="hover">
+              <Link href="tel:+91 8275371550" color="inherit" underline="hover">
                 +91 8275371550
               </Link>
             </Typography>
@@ -76,6 +76,7 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/hrishikesh-kukade-34676b27a/"
                 target="_blank"
                 aria-label="LinkedIn"
+                sx={{color: "white"}}
               >
                 <LinkedIn />
               </IconButton>
@@ -84,6 +85,7 @@ const Footer = () => {
                 href="https://github.com/Hrishikeshkukade"
                 target="_blank"
                 aria-label="GitHub"
+                sx={{color: "white"}}
               >
                 <GitHub />
               </IconButton>
