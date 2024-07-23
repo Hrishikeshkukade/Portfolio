@@ -189,7 +189,7 @@ const Projects = () => {
       }}
     >
       <Container maxWidth="md">
-        <Typography
+      <Typography
           ref={titleRef}
           variant="h3"
           gutterBottom
@@ -201,6 +201,9 @@ const Projects = () => {
             opacity: titleInView ? 1 : 0,
             transform: titleInView ? "translateY(0)" : "translateY(50px)",
             transition: "opacity 1s ease-out, transform 1s ease-out",
+            "@media (max-width: 600px)": {
+              fontSize: "2rem",
+            },
           }}
         >
           Projects
