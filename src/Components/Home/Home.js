@@ -155,6 +155,7 @@ const Home = () => {
           <Box display="flex" flexDirection="row" justifyContent="center">
             <AnimatedButton
               variant="contained"
+              href="mailto:hrishikeshkukade6@gmail.com"
               sx={{
                 backgroundColor: "white",
                 color: "black",
@@ -171,6 +172,9 @@ const Home = () => {
             </AnimatedButton>
             <AnimatedButton
               variant="contained"
+              component="a"
+              href="https://drive.google.com/file/d/1BDOykZGdjRbedKepiys2dMTFBH6KgY8j/view?usp=drive_link"
+              download="Hrishikesh_Kukade_Resume.pdf"
               sx={{
                 backgroundColor: "transparent",
                 color: "white",
@@ -198,5 +202,6 @@ const Home = () => {
 };
 
 export default Home;
+
 
 
