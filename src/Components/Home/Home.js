@@ -167,7 +167,7 @@ const Home = () => {
                 },
               }}
             >
-              Get Started
+              Hire Me!
             </AnimatedButton>
             <AnimatedButton
               variant="contained"

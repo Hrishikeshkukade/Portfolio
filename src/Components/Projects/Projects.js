@@ -18,6 +18,7 @@ import { keyframes } from "@emotion/react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import CloseIcon from "@mui/icons-material/Close";
+import { useInView } from "react-intersection-observer";
 
 const projects = [
   {
@@ -137,6 +138,16 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const { ref: titleRef, inView: titleInView } = useInView({
+    triggerOnce: true, // Animation should trigger only once
+    threshold: 0.1, // Adjust the threshold as needed
+  });
+
+  const { ref, inView } = useInView({
+    triggerOnce: true, // Animation should trigger only once
+    threshold: 0.1, // Adjust the threshold as needed
+  });
+
   const handleOpen = (project) => {
     setSelectedProject(project);
     setCurrentImageIndex(0);
@@ -179,6 +190,7 @@ const Projects = () => {
     >
       <Container maxWidth="md">
         <Typography
+          ref={titleRef}
           variant="h3"
           gutterBottom
           sx={{
@@ -186,56 +198,68 @@ const Projects = () => {
             marginBottom: "2rem",
             borderBottom: "3px solid #fff",
             display: "inline-block",
+            opacity: titleInView ? 1 : 0,
+            transform: titleInView ? "translateY(0)" : "translateY(50px)",
+            transition: "opacity 1s ease-out, transform 1s ease-out",
           }}
         >
           Projects
         </Typography>
-        {projects.map((project, index) => (
-          <StyledCard
-            sx={{ cursor: "pointer" }}
-            key={index}
-            onClick={() => handleOpen(project)}
-          >
-            <StyledCardContent>
-              <Typography variant="h5" component="div">
-                {project.name}
-              </Typography>
-              <Typography
-                variant="body2"
-                sx={{ marginTop: "10px", marginBottom: "10px" }}
-              >
-                {project.description}
-              </Typography>
-              <Typography variant="body2">
-                <strong>Technologies:</strong> {project.technologies.join(", ")}
-              </Typography>
-            </StyledCardContent>
-            <CardActions>
-              <StyledButton
-                size="small"
-                variant="outlined"
-                href={project.link}
-                target="_blank"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                View Project
-              </StyledButton>
-              <StyledButton
-                size="small"
-                variant="outlined"
-                href={project.repo}
-                target="_blank"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                GitHub Repo
-              </StyledButton>
-            </CardActions>
-          </StyledCard>
-        ))}
+        <Box
+          ref={ref}
+          sx={{
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(50px)",
+            transition: "opacity 1s ease-out, transform 1s ease-out",
+          }}
+        >
+          {projects.map((project, index) => (
+            <StyledCard
+              sx={{ cursor: "pointer" }}
+              key={index}
+              onClick={() => handleOpen(project)}
+            >
+              <StyledCardContent>
+                <Typography variant="h5" component="div">
+                  {project.name}
+                </Typography>
+                <Typography
+                  variant="body2"
+                  sx={{ marginTop: "10px", marginBottom: "10px" }}
+                >
+                  {project.description}
+                </Typography>
+                <Typography variant="body2">
+                  <strong>Technologies:</strong> {project.technologies.join(", ")}
+                </Typography>
+              </StyledCardContent>
+              <CardActions>
+                <StyledButton
+                  size="small"
+                  variant="outlined"
+                  href={project.link}
+                  target="_blank"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  View Project
+                </StyledButton>
+                <StyledButton
+                  size="small"
+                  variant="outlined"
+                  href={project.repo}
+                  target="_blank"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  GitHub Repo
+                </StyledButton>
+              </CardActions>
+            </StyledCard>
+          ))}
+        </Box>
       </Container>
 
       {selectedProject && (
@@ -262,6 +286,7 @@ const Projects = () => {
                 color: "white",
                 borderRadius: 1,
                 boxShadow: 24,
+                
                 p: 4,
                 outline: "none",
               }}
@@ -282,7 +307,7 @@ const Projects = () => {
                   <img
                     src={selectedProject.screenshots[currentImageIndex]}
                     alt={`Screenshot ${currentImageIndex + 1}`}
-                    style={{ width: "80%", borderRadius: "5px" }}
+                    style={{ width: "90%", borderRadius: "5px", }}
                   />
                   <IconButton onClick={handleNextImage} sx={{ color: "white" }}>
                     <ArrowForwardIcon />
@@ -344,5 +369,7 @@ const Projects = () => {
 };
 
 export default Projects;
+
+
 
 
