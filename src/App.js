@@ -4,6 +4,7 @@ import Home from "./Components/Home/Home";
 import Services from "./Components/Services/Services";
 import About from "./Components/About/About";
 import Skills from "./Components/Skills/Skills";
+import Projects from "./Components/Projects/Projects";
 
 
 function App() {
@@ -13,7 +14,8 @@ function App() {
       <Home />
       <About />
       <Skills />
-      <Services />
+      <Projects />
+      {/* <Services /> */}
     </div>
   );
 }

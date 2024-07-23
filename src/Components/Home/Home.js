@@ -104,7 +104,7 @@ const Home = () => {
       sx={{
         backgroundColor: "#000",
         animation: `${backgroundAnimation} 15s ease infinite`,
-        height: "115vh",
+        height: "100vh",
         color: "white",
         display: "flex",
         flexDirection: "column",
